@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { ImageBackground, SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native'; 
-import { Pressable } from 'react-native-web';
+import React, {useState, useRef, useEffect} from 'react';
+import { ImageBackground, SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable} from 'react-native'; 
 
 export default function App() {
   const imgExterna = {uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'};
   const [input, setInput] = useState('');
-  const [p, setP] = useState("");
+  const [p, setP] = useState('');
+  const buttonRef = useRef(null);
   const mostrarInput = () => {
     setP(input);
   }
@@ -15,6 +15,13 @@ export default function App() {
     setInput(e.target.value);    
     console.log(input);
   }
+
+  const verPerfil = () =>{
+    // let changeButton = document.getElementById('changeButton');
+    // changeButton.style.backgroundColor = '#ffff';
+    //Tengo que usar useref y effect
+  }
+
   return (
     <ImageBackground 
       source={imgExterna}
@@ -30,6 +37,7 @@ export default function App() {
           <Text >Contactar</Text>
         </TouchableOpacity>
         <Text style={styles.texto1}>{p}</Text>
+        <Pressable onPress={verPerfil} style={styles.contactarButton} ref={buttonRef}><Text>Ver Perfil</Text></Pressable>
       </SafeAreaView>          
       <StatusBar style='light'/>
     </ImageBackground>
