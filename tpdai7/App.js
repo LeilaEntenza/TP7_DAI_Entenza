@@ -29,6 +29,7 @@ export default function App() {
       resizeMethod= "cover"
       >
       <SafeAreaView style={styles.container}>
+        <View style={styles.card}> 
         <Image source={{uri: 'https://i.pinimg.com/736x/7d/a8/d0/7da8d04ef76e488a0b6117b97efece9d.jpg'}} style={styles.FotoPerfil}/>
         <Text style={styles.texto1}>Leila Entenza Chiderski</Text>
         <Text style={styles.texto1}>Full Stack Developer</Text>
@@ -38,6 +39,7 @@ export default function App() {
         </TouchableOpacity>
         <Text style={styles.texto1}>{p}</Text>
         <Pressable onPress={verPerfil} style={styles.contactarButton} ref={buttonRef}><Text>Ver Perfil</Text></Pressable>
+        </View>
       </SafeAreaView>          
       <StatusBar style='light'/>
     </ImageBackground>
@@ -51,6 +53,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  card: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 300,
+  },
+
   FotoPerfil: {
     width: 100,
     height: 100,
@@ -59,15 +70,17 @@ const styles = StyleSheet.create({
 
   texto1: {
     margin: 2,
-    color: 'white',
-    fontSize: 25,
+    fontSize: 20,
     fontFamily: 'fantasy',
   },
 
   input: {
     backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'grey',
     width: 200,
     borderRadius: 15,
+    margin: 10,
   },
 
   contactarButton: {
