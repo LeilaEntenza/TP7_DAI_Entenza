@@ -3,7 +3,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { ImageBackground, SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable} from 'react-native'; 
 
 export default function App() {
-  const imgExterna = {uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'};
+  const [imgExterna, setImgExterna] = useState({uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'});
   const [input, setInput] = useState('');
   const [p, setP] = useState('');
   const buttonRef = useRef(null);
@@ -17,11 +17,10 @@ export default function App() {
   }
 
   const verPerfil = () =>{
-    // let changeButton = document.getElementById('changeButton');
-    // changeButton.style.backgroundColor = '#ffff';
-    //Tengo que usar useref y effect
+      if(imgExterna == ({uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'}))
+      setImgExterna ({uri: 'https://i.pinimg.com/736x/e5/5e/b1/e55eb19f5393e2c81d36586825c45b2e.jpg'});
+      else setImgExterna ({uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'});
   }
-
   return (
     <ImageBackground 
       source={imgExterna}
@@ -32,13 +31,13 @@ export default function App() {
         <View style={styles.card}> 
         <Image source={{uri: 'https://i.pinimg.com/736x/7d/a8/d0/7da8d04ef76e488a0b6117b97efece9d.jpg'}} style={styles.FotoPerfil}/>
         <Text style={styles.texto1}>Leila Entenza Chiderski</Text>
-        <Text style={styles.texto1}>Full Stack Developer</Text>
+        <Text style={styles.texto2}>Full Stack Developer</Text>
         <TextInput onChange={agregar} onInput={agregar} style={styles.input} placeholder='Comentarios' keyboardType='default'/>
         <TouchableOpacity style={styles.contactarButton} onPress={mostrarInput}>
-          <Text >Contactar</Text>
+          <Text style={styles.buttonText}>Contactar</Text>
         </TouchableOpacity>
         <Text style={styles.texto1}>{p}</Text>
-        <Pressable onPress={verPerfil} style={styles.contactarButton} ref={buttonRef}><Text>Ver Perfil</Text></Pressable>
+        <Pressable onPress={verPerfil} style={styles.verPerfil} ref={buttonRef}><Text style={styles.buttonText}>Ver Perfil</Text></Pressable>
         </View>
       </SafeAreaView>          
       <StatusBar style='light'/>
@@ -60,6 +59,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 300,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    margin: 3
   },
 
   FotoPerfil: {
@@ -71,7 +75,14 @@ const styles = StyleSheet.create({
   texto1: {
     margin: 2,
     fontSize: 20,
-    fontFamily: 'fantasy',
+    fontFamily: 'inherit',
+    fontWeight: 600
+  },
+
+  texto2: {
+    margin: 2,
+    fontSize: 18,
+    fontFamily: 'inherit',
   },
 
   input: {
@@ -79,15 +90,46 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'grey',
     width: 200,
-    borderRadius: 15,
+    height: 30,
+    borderRadius: 10,
     margin: 10,
+    fontSize: 15,
+    padding: 2,
   },
 
   contactarButton: {
-    backgroundColor: 'orange',
+    backgroundColor: '#1A3E77',
     width: 200,
-    height: 50,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+    borderRadius: 10,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 3},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    margin: 3
+  },
+
+  buttonText: {
+    color: 'white',
+    fontSize: 15,
+    fontFamily: 'sans-serif'
+  },
+
+  verPerfil: {
+    backgroundColor: '#1c1c1c',
+    width: 125,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 3},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    margin: 5
+  },
+
+  
 });
