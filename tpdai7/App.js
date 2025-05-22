@@ -12,12 +12,11 @@ export default function App() {
   }
 
   const agregar = (e) =>{
-    setInput(e.target.value);    
-    console.log(input);
+    setInput(e.target.value);
   }
 
   const verPerfil = () =>{
-      if(imgExterna == ({uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'}))
+      if(imgExterna.uri === 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg')
       setImgExterna ({uri: 'https://i.pinimg.com/736x/e5/5e/b1/e55eb19f5393e2c81d36586825c45b2e.jpg'});
       else setImgExterna ({uri: 'https://i.pinimg.com/736x/58/45/33/584533963b52ef77f22f2e9d4c276c90.jpg'});
   }
@@ -37,7 +36,10 @@ export default function App() {
           <Text style={styles.buttonText}>Contactar</Text>
         </TouchableOpacity>
         <Text style={styles.texto1}>{p}</Text>
-        <Pressable onPress={verPerfil} style={styles.verPerfil} ref={buttonRef}><Text style={styles.buttonText}>Ver Perfil</Text></Pressable>
+        <Pressable onPress={verPerfil} style={({ pressed }) => [
+        styles.verPerfil, { backgroundColor: pressed ? '#444' : '#1c1c1c' } ]}>
+          <Text style={styles.buttonText}>Ver Perfil</Text>
+          </Pressable>
         </View>
       </SafeAreaView>          
       <StatusBar style='light'/>
@@ -118,7 +120,6 @@ const styles = StyleSheet.create({
   },
 
   verPerfil: {
-    backgroundColor: '#1c1c1c',
     width: 125,
     height: 35,
     justifyContent: 'center',
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 3},
     shadowOpacity: 0.4,
     shadowRadius: 3,
-    margin: 5
+    margin: 2
   },
 
   
