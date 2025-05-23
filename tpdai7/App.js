@@ -12,6 +12,7 @@ export default function App() {
   }
 
   const agregar = (e) =>{
+    //Recordatorio: anda en web pero no en mobile
     setInput(e.target.value);
   }
 
